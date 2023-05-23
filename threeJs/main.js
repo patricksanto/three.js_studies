@@ -24,6 +24,7 @@ const scene = new THREE.Scene();
   const light = new THREE.PointLight( '#ffffff ', 1 , 100);
   // const light2 = new THREE.PointLight( '#f6e ', 1 , 100);
   light.position.set(30 , 30, 40);
+  light.intensity = 2;
   // light2.position.set(-40 , 40, -20);
   // scene.add( light2 );
   scene.add( light );
@@ -73,3 +74,26 @@ const tl = gsap.timeline({defaults: {duration: 2 , ease: 'power2.inOut'}});
 tl.fromTo(mesh.scale , {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1});
 tl.fromTo('.title', {opacity: 0}, {opacity: 1});
 tl.fromTo('navbar', {y: '-100%'}, {y: '0%'});
+
+//Mouse animation color change
+let mouseDown = false;
+let rgb = [];
+window.addEventListener('mousedown', () => ( mouseDown = true ));
+window.addEventListener('mouseup', () => ( mouseDown = false ));
+
+window.addEventListener('mousemove', (e) => {
+  if(mouseDown){
+    rgb = [
+      Math.round( e.pageX / window.innerWidth * 255 ),
+      Math.round( e.pageY / window.innerHeight * 255 ),
+      150
+    ]
+    // Lets Animate
+    let newColor = new THREE.Color(`rgb(${rgb.join(',')})`);
+    gsap.to(mesh.material.color, {
+      r: newColor.r,
+      g: newColor.g,
+      b: newColor.b} );
+
+  }
+});
