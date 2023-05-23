@@ -69,5 +69,7 @@ loop();
 
 
 // Timeline Magic
-const tl = gsap.timeline({defaults: {duration: 2}});
+const tl = gsap.timeline({defaults: {duration: 2 , ease: 'power2.inOut'}});
 tl.fromTo(mesh.scale , {x: 0, y: 0, z: 0}, {x: 1, y: 1, z: 1});
+tl.fromTo('.title', {opacity: 0}, {opacity: 1});
+tl.fromTo('navbar', {y: '-100%'}, {y: '0%'});
