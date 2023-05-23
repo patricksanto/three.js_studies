@@ -27,12 +27,12 @@ const scene = new THREE.Scene();
   scene.add( light );
 
  //Add the Camera
- const camera = new THREE.PerspectiveCamera( 50, 800/600 );
+ const camera = new THREE.PerspectiveCamera( 50, sizes.width / sizes.height, 0.1, 1000 );
  camera.position.z = 10 ;
  scene.add( camera );
 
  //Renderer
 const canvas = document.querySelector('.webgl');
 const renderer  = new THREE.WebGLRenderer({ canvas });
-renderer.setSize( 800, 600 );
+renderer.setSize( sizes.width, sizes.height );
 renderer.render( scene, camera );
