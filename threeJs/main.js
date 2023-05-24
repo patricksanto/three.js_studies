@@ -6,10 +6,14 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 const scene = new THREE.Scene();
 
 //Create a sphere
- const geometry = new THREE.SphereGeometry( 3, 64, 64);
+const geometry = new THREE.TorusKnotGeometry( 30, 2, 231, 20, 11, 8 );
  const material = new THREE.MeshStandardMaterial({
-      color: '#00ff83',
-      roughness: 0.4,
+      color: '#fbe',
+      metalness: 1,
+      opacity: 0.8,
+      transparent: true,
+      emissive: '#000',
+      emissiveIntensity: 0.5,
  })
  const mesh = new THREE.Mesh( geometry, material );
  scene.add( mesh );
@@ -21,17 +25,18 @@ const scene = new THREE.Scene();
   }
 
  //Light
-  const light = new THREE.PointLight( '#ffffff ', 1 , 100);
+  const light = new THREE.PointLight( '#ffd ', 1 , 100);
   // const light2 = new THREE.PointLight( '#f6e ', 1 , 100);
-  light.position.set(30 , 30, 40);
-  light.intensity = 2;
+  light.position.set(20 , 20, 20);
+  light.intensity = 4;
   // light2.position.set(-40 , 40, -20);
   // scene.add( light2 );
   scene.add( light );
 
+
  //Add the Camera
  const camera = new THREE.PerspectiveCamera( 50, sizes.width / sizes.height, 0.1, 1000 );
- camera.position.z = 10 ;
+ camera.position.z = 100;
  scene.add( camera );
 
 
